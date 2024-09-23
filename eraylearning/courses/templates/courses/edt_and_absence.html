@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+
+{% block content %} 
+
+    <div class="container-fluid pb-3">
+            <div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
+                <div class="bg-body-tertiary border rounded-3">
+                    <div class="container mt-4">
+                        <div class="row">
+                            <center>
+                                <div class="col-md-6">
+                                    <center>
+                                        <div class="card">
+                                            <div class="card-header text-center">
+                                                Niveau académique
+                                            </div>
+                                            <div class="card-body">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item"><a id="L1" href="#" class="nav-link">L1</a></li>
+                                                    <li class="list-group-item"><a id="L2" href="#" class="nav-link">L2</a></li>
+                                                    <li class="list-group-item"><a id="L3" href="#" class="nav-link">L3</a></li>
+                                                    <li class="list-group-item"><a id="M1" href="#" class="nav-link">M1</a></li>
+                                                    <li class="list-group-item"><a id="M2" href="#" class="nav-link">M2</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-body-tertiary border rounded-3">
+                    <div class="container mt-4">
+                        <div class="row" id="row2-id1">
+                            <div class="col-md-6">
+                                <div class="card" id="card-none">
+                                    <div class="card-header text-center"> Filière
+                                        <a href="#" id="close">X</a>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group">
+                                            <li class="list-group-item"><a id="itemfiliere" href="#">Filière 1<br>M2 </a></li>
+                                            <li class="list-group-item">Filière 1<br>M2</li>
+                                      
+                                        </ul>
+                                        </ul>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group">
+                                            <li class="list-group-item"><a id="itemfiliere" href="#">Filière 1<br>M2 </a></li>
+                                            <li class="list-group-item">Filière 1<br>M2</li>
+                                  
+                                        </ul>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="test">
+                                <p id="testz"></p>
+                            </div>
+                            <div id="creat">
+                                <p><br><br><br>
+                                    Ici vous pouvez voir tous les filières disponible sur L1
+                                    <br><br><br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container mt-4" id="container-mt4_div">
+                        <div class="row">
+                            <div class="col-md-6id">
+                                <p href="#"><br><br>
+                                    Ici vous pouvez modifier, supprimer, ajouter tous les emplois du temps de chaque niveau d'étude académique dans chaque filière et matière.
+                                    <br><br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container-fluid pb-3" id="container-fluid-div">
+                <div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
+                    <div class="bg-body-tertiary border rounded-3">
+                        <div class="container mt-4">
+                            <div class="row">
+                                <center>
+                                    <div class="col-md-6">
+                                        <center>
+                                            <div class="card">
+                                                <div class="card-header text-center">
+                                                    Niveau académique
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item"><a id="L1" href="#" class="nav-link">L1</a></li>
+                                                        <li class="list-group-item"><a id="L2" href="#" class="nav-link">L2</a></li>
+                                                        <li class="list-group-item"><a id="L3" href="#" class="nav-link">L3</a></li>
+                                                        <li class="list-group-item"><a id="M1" href="#" class="nav-link">M1</a></li>
+                                                        <li class="list-group-item"><a id="M2" href="#" class="nav-link">M2</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-body-tertiary border rounded-3">
+                        <div class="container mt-4">
+                            <div class="row" id="row2-id">
+                                <div class="col-md-6">
+                                    <div class="card" id="card-none">
+                                        <div class="card-header text-center">
+                                            Filière
+                                            <a href="#" id="close">X</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><a id="itemfiliere" href="#">Filière 1<br>M2 </a></li>
+                                                <li class="list-group-item">Filière 1<br>M2</li>
+                                            </ul>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="test">
+                                    <p id="testz"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container mt-4" id="container-mt4_div">
+                            <div class="row" id="row2-id">
+                                <div class="col-md-6id">
+                                    <p href="#"><br><br>
+                                        {{ edt_forms }}
+                                        <br><br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+{% endblock content %} 
