@@ -50,7 +50,7 @@ class Student(models.Model):
 class Note(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)  # Un étudiant
     cours = models.ForeignKey(Cours, on_delete=models.CASCADE)  # Un cours
-    note = models.DecimalField(max_digits=5, decimal_places=2)  # Note sur 100 par exemple
+    note = models.DecimalField(max_digits=20, decimal_places=2)  # Note sur 100 par exemple
     date_assigned = models.DateTimeField(auto_now_add=True)  # Date d'attribution de la note
 
     class Meta:
