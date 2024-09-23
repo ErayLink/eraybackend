@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from courses.models import Filiere
+
 # Create your models here.
 # Exemple de niveaux d'étude possibles
 class StudyLevel(models.TextChoices):
@@ -12,7 +14,8 @@ class StudyLevel(models.TextChoices):
 class UserErayLearning(AbstractUser):
     is_student = models.BooleanField(default=True)
     is_teacher = models.BooleanField(default=False)
-    
+    # Lien avec une filière
+    filiere = models.ForeignKey(Filiere, on_delete=models.SET_NULL, null=True, blank=True)
     # Niveau d'étude de l'étudiant
     study_level = models.CharField(
         max_length=10,
@@ -21,10 +24,10 @@ class UserErayLearning(AbstractUser):
         blank=True
     )
     
-    date_of_birth = models.DateField(null=True, blank=True)
-    address = models.CharField(max_length=255, null=True, blank=True)
+    # date_of_birth = models.DateField(null=True, blank=True)
+    # address = models.CharField(max_length=255, null=True, blank=True)
     phone = models.CharField(max_length=15, null=True, blank=True)
-    matricule = models.CharField(max_length=50, null=False, blank=False, unique=True)
+    matricule = models.CharField(max_length=50, null=False, blank=False, unique=True, editable=False)
 
     def __str__(self):
         return self.username
@@ -37,20 +40,16 @@ class UserErayLearning(AbstractUser):
 
 
     def generate_matricule(self):
-        # Récupérer le dernier utilisateur étudiant
+    # Récupérer le dernier étudiant
         last_student = UserErayLearning.objects.filter(is_student=True).order_by('id').last()
-        
+
         if last_student and last_student.matricule:
-            # Extraire la partie numérique du matricule et l'incrémenter
-            last_matricule = last_student.matricule
-            try:
-                last_number = int(last_matricule.split('-')[-1])  # Extrait la partie numérique
-            except ValueError:
-                last_number = 0  # Si le matricule n'a pas de partie numérique, on démarre à 0
+            last_number = int(last_student.matricule.split('-')[-1])
             new_number = last_number + 1
         else:
-            # Si c'est le premier étudiant
             new_number = 1
 
-        # Générer le matricule sous le format souhaité, par exemple "STU-0001"
-        return f"student-{new_number:05d}-{self.username}"
+        # Ajoute la filière et le niveau d’étude au matricule
+        filiere_code = self.filiere.name[:3].upper() if self.filiere else 'GEN'
+        level_code = self.study_level if self.study_level else 'L1'
+        return f"{level_code}-{filiere_code}-{new_number:05d}"
