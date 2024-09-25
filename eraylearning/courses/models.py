@@ -31,6 +31,7 @@ class Cours(models.Model):
 # Modèle pour les filières (par exemple, "Informatique", "Gestion", etc.)
 class Filiere(models.Model):
     name = models.CharField(max_length=200, blank=False, null=False)
+    date = models.DateTimeField(auto_now=True, auto_created=True)
 
     def __str__(self):
         return self.name

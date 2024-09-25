@@ -40,16 +40,33 @@ class UserErayLearning(AbstractUser):
 
 
     def generate_matricule(self):
+        if self.is_student:
     # Récupérer le dernier étudiant
-        last_student = UserErayLearning.objects.filter(is_student=True).order_by('id').last()
+            last_student = UserErayLearning.objects.filter(is_student=True).order_by('id').last()
 
-        if last_student and last_student.matricule:
-            last_number = int(last_student.matricule.split('-')[-1])
-            new_number = last_number + 1
+            if (last_student and last_student.matricule):
+                last_number = int(last_student.matricule.split('-')[-1])
+                new_number = last_number + 1
+            else:
+                new_number = 1
+
+            # Ajoute la filière et le niveau d’étude au matricule pour les étudiants
+            filiere_code = self.filiere.name[:3].upper() if self.filiere else 'GEN'
+            level_code = self.study_level if self.study_level else 'L1'
+            return f"STU-{level_code}-{filiere_code}-{new_number:05d}"
+        
+        elif self.is_teacher:
+        # Récupérer le dernier enseignant
+            last_teacher = UserErayLearning.objects.filter(is_teacher=True).order_by('id').last()
+
+            if last_teacher and last_teacher.matricule:
+                last_number = int(last_teacher.matricule.split('-')[-1])
+                new_number = last_number + 1
+            else:
+                new_number = 1
+
+        # Ajouter un code différent pour les enseignants
+            return f"TEA-{new_number:05d}"
+
         else:
-            new_number = 1
-
-        # Ajoute la filière et le niveau d’étude au matricule
-        filiere_code = self.filiere.name[:3].upper() if self.filiere else 'GEN'
-        level_code = self.study_level if self.study_level else 'L1'
-        return f"{level_code}-{filiere_code}-{new_number:05d}"
+            return f"UNKNOWN-{new_number:05d}"

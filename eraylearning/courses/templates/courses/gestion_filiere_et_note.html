@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Gestion des Filières et des Notes</h1>
+
+    <!-- Bouton pour créer une nouvelle filière -->
+    <h2>Créer une nouvelle filière</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ filiere_form.as_p }}
+        <button type="submit" name="create_filiere" class="btn btn-primary">Créer Filière</button>
+    </form>
+
+    <hr>
+
+    <!-- Bouton pour créer une nouvelle note -->
+    <h2>Créer une nouvelle note</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ note_form.as_p }}
+        <button type="submit" name="create_note" class="btn btn-primary">Créer Note</button>
+    </form>
+{% endblock %}

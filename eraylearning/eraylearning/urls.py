@@ -16,16 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from courses import views
-from account.views import login_view, logout_user, profile
+from account.views import login_view, logout_user, profile, inscription
 
 urlpatterns = [
+    path('gestion/', views.gestion_filiere_et_note, name='gestion_filiere_et_note'),
     path("", login_view, name="index"), #Return LOGIN PAGES
     path("dashboard/", views.dashboard, name="dashboard"),
     path("cours/", views.cours, name="cours"),
     path("notes/", views.notes, name="notes"),
     path("absence/", views.absence, name="absence"),
-    # path("edt/", views.edt_and_absence, name="edt_and_absence"),
+    path("edt/", views.edt, name="edt"),
     path('admin/', admin.site.urls),
     path("logout/", logout_user , name="logout"),
     path("profile/", profile , name="profile"),
+    path("inscription/", inscription , name="inscription"),
+
 ]
